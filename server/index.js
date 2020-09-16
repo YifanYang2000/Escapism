@@ -75,12 +75,17 @@ app.post('/api/user/login', (req, res) => {
                     loginSuccess: true
                 });
         });
-    })
-
-    
-
+    });
 });
 
+app.get("/api/user/logout", auth, (req, res) => {
+    User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, doc) => {
+        if (err) return res.json({success: false, err})
+        return res.status(200).send({
+           success: true 
+        })
+    });
+});
 
 
 app.listen(5000);
