@@ -8,11 +8,11 @@ const config = require('./config/key')
 
 const {User} = require('./models/user')
 const {auth} = require('./middleware/auth');
-const user = require('./models/user');
 
-mongoose.connect(config.mongoURI, 
-    {useNewUrlParser: true}).then(() => console.log('DB connected'))
-                            .catch(err => console.error(err));
+mongoose
+    .connect(config.mongoURI, {useNewUrlParser: true})
+    .then(() => console.log('DB connected'))
+    .catch(err => console.error(err));
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -87,5 +87,7 @@ app.get("/api/user/logout", auth, (req, res) => {
     });
 });
 
-
-app.listen(5000);
+const port = process.env.PORT || 5000
+app.listen(port, () => {
+    console.log(`Server Running at ${port}`)
+});

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "first project",
   "main": "index.js",
+  "engine": {
+    "node": "v12.14.1",
+    "npm": "v6.14.5"
+  },
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js"
